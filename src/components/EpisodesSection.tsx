@@ -32,28 +32,34 @@ const episodes = [
 
 const EpisodesSection = () => {
   return (
-    <section id="episodes" className="py-16 md:py-24 bg-card/50 film-grain">
+    <section id="episodes" className="py-16 md:py-24 bg-card/30 film-grain analog-glow">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Latest Episodes</h2>
-            <p className="text-muted-foreground max-w-2xl">Tune in to our latest conversations on everything from blockbuster hits to indie gems.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 font-cinematic relative inline-block">
+              Latest Episodes
+              <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary"></span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mt-4">
+              Tune in to our latest conversations on everything from blockbuster hits to indie gems.
+            </p>
           </div>
-          <Button variant="ghost" className="mt-4 md:mt-0">
-            View All Episodes <ArrowRight className="ml-2 h-4 w-4" />
+          <Button variant="ghost" className="mt-4 md:mt-0 group">
+            View All Episodes <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {episodes.map((episode) => (
-            <EpisodePlayer
-              key={episode.id}
-              title={episode.title}
-              date={episode.date}
-              duration={episode.duration}
-              image={episode.image}
-              description={episode.description}
-            />
+          {episodes.map((episode, index) => (
+            <div className="transform transition-transform duration-500 hover:-translate-y-2" key={episode.id} style={{ transitionDelay: `${index * 150}ms` }}>
+              <EpisodePlayer
+                title={episode.title}
+                date={episode.date}
+                duration={episode.duration}
+                image={episode.image}
+                description={episode.description}
+              />
+            </div>
           ))}
         </div>
       </div>

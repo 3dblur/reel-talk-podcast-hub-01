@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --background: 240 5% 8%;
+    --background: 240 10% 5%;
     --foreground: 210 40% 98%;
 
     --card: 240 10% 10%;
@@ -55,10 +55,46 @@
   
   .film-grain::after {
     content: "";
-    @apply absolute inset-0 bg-grain opacity-10 pointer-events-none mix-blend-overlay;
+    @apply absolute inset-0 bg-grain opacity-20 pointer-events-none mix-blend-overlay;
   }
   
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-cinema-blue bg-clip-text text-transparent;
   }
+  
+  .vintage-blur {
+    @apply backdrop-blur-sm bg-black/30 border border-white/5 shadow-inner;
+  }
+  
+  .analog-glow {
+    @apply relative;
+  }
+  
+  .analog-glow::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-60 pointer-events-none mix-blend-overlay;
+  }
+  
+  .retro-vignette {
+    @apply relative overflow-hidden;
+  }
+  
+  .retro-vignette::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-radial from-transparent to-black/80 opacity-50 pointer-events-none mix-blend-multiply;
+  }
+  
+  .grain-subtle {
+    @apply relative;
+  }
+  
+  .grain-subtle::after {
+    content: "";
+    @apply absolute inset-0 bg-grain opacity-5 pointer-events-none mix-blend-overlay animate-subtle-grain;
+  }
+}
+
+@keyframes subtle-grain {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.08; }
 }

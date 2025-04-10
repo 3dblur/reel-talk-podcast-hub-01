@@ -69,6 +69,10 @@ export default {
 					blue: '#0EA5E9',
 					darkBlue: '#172554',
 					lightGray: '#F1F0FB',
+					amber: '#F59E0B',
+					crimson: '#DC2626',
+					teal: '#14B8A6',
+					warmGray: '#292524',
 				},
 			},
 			borderRadius: {
@@ -96,16 +100,34 @@ export default {
 				'pulse-slow': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.8' },
+				},
+				'subtle-float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' },
+				},
+				'flicker': {
+					'0%, 100%': { opacity: '1' },
+					'25%': { opacity: '0.9' },
+					'50%': { opacity: '1' },
+					'75%': { opacity: '0.85' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+				'subtle-float': 'subtle-float 6s ease-in-out infinite',
+				'flicker': 'flicker 3s ease-in-out infinite',
 			},
 			backgroundImage: {
 				'grain': "url('/noise.png')",
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'grain-overlay': "url('/grain-overlay.png')",
+				'film-texture': "url('/film-texture.png')",
+			},
+			fontFamily: {
+				'cinematic': ['Playfair Display', 'serif'],
+				'mono-alt': ['Space Mono', 'monospace'],
 			},
 		}
 	},
