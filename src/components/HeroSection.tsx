@@ -27,7 +27,7 @@ const HeroSection = () => {
       duration: 5000
     });
   };
-  return <div className="relative min-h-screen overflow-hidden bg-pulp-red">
+  return <div className="relative min-h-screen overflow-hidden bg-[#cd0644]">
       {/* Pixel grid background */}
       <div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 z-0" aria-hidden="true" />
       
