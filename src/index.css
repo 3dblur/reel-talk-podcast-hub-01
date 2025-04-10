@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --background: 240 10% 5%;
+    --background: 240 5% 8%;
     --foreground: 210 40% 98%;
 
     --card: 240 10% 10%;
@@ -14,7 +14,7 @@
     --popover: 240 10% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 0 84% 60%;
+    --primary: 260 84% 63%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 240 10% 15%;
@@ -23,7 +23,7 @@
     --muted: 240 10% 15%;
     --muted-foreground: 215 20% 75%;
 
-    --accent: 0 84% 60%;
+    --accent: 260 84% 63%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -31,7 +31,7 @@
 
     --border: 240 10% 20%;
     --input: 240 10% 20%;
-    --ring: 0 84% 60%;
+    --ring: 260 84% 63%;
 
     --radius: 0.5rem;
   }
@@ -55,110 +55,10 @@
   
   .film-grain::after {
     content: "";
-    @apply absolute inset-0 bg-grain opacity-20 pointer-events-none mix-blend-overlay;
+    @apply absolute inset-0 bg-grain opacity-10 pointer-events-none mix-blend-overlay;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-cinema-red to-cinema-amber bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-cinema-blue bg-clip-text text-transparent;
   }
-  
-  .vintage-blur {
-    @apply backdrop-blur-sm bg-black/30 border border-white/5 shadow-inner;
-  }
-  
-  .analog-glow {
-    @apply relative;
-  }
-  
-  .analog-glow::after {
-    content: "";
-    @apply absolute inset-0 bg-gradient-radial from-primary/10 to-transparent opacity-60 pointer-events-none mix-blend-overlay;
-  }
-  
-  .retro-vignette {
-    @apply relative overflow-hidden;
-  }
-  
-  .retro-vignette::after {
-    content: "";
-    @apply absolute inset-0 bg-gradient-radial from-transparent to-black/80 opacity-50 pointer-events-none mix-blend-multiply;
-  }
-  
-  .grain-subtle {
-    @apply relative;
-  }
-  
-  .grain-subtle::after {
-    content: "";
-    @apply absolute inset-0 bg-grain opacity-5 pointer-events-none mix-blend-overlay animate-subtle-grain;
-  }
-  
-  .film-strip {
-    @apply relative;
-  }
-  
-  .film-strip::before {
-    content: "";
-    @apply absolute top-0 h-full w-8 bg-[url('/lovable-uploads/d373a313-fe5c-4306-a6aa-030ba4eac4d7.png')] bg-repeat-y opacity-70 -left-4 pointer-events-none;
-  }
-  
-  .film-strip::after {
-    content: "";
-    @apply absolute top-0 h-full w-8 bg-[url('/lovable-uploads/d373a313-fe5c-4306-a6aa-030ba4eac4d7.png')] bg-repeat-y opacity-70 -right-4 pointer-events-none;
-  }
-  
-  .text-outline {
-    text-shadow: -1px -1px 0 rgba(0,0,0,0.5), 1px -1px 0 rgba(0,0,0,0.5), -1px 1px 0 rgba(0,0,0,0.5), 1px 1px 0 rgba(0,0,0,0.5);
-  }
-  
-  .arthouse-overlay {
-    @apply relative overflow-hidden;
-  }
-  
-  .arthouse-overlay::after {
-    content: "";
-    @apply absolute inset-0 bg-gradient-to-b from-cinema-red/30 to-cinema-blue/30 mix-blend-overlay opacity-60 pointer-events-none;
-  }
-}
-
-@keyframes subtle-grain {
-  0%, 100% { opacity: 0.05; }
-  50% { opacity: 0.08; }
-}
-
-@keyframes film-flicker {
-  0% { opacity: 0.92; }
-  5% { opacity: 0.9; }
-  10% { opacity: 0.95; }
-  15% { opacity: 0.85; }
-  20% { opacity: 0.9; }
-  25% { opacity: 0.95; }
-  30% { opacity: 0.9; }
-  35% { opacity: 0.9; }
-  40% { opacity: 0.95; }
-  45% { opacity: 0.92; }
-  50% { opacity: 0.9; }
-  55% { opacity: 0.95; }
-  60% { opacity: 0.94; }
-  65% { opacity: 0.9; }
-  70% { opacity: 0.95; }
-  75% { opacity: 0.92; }
-  80% { opacity: 0.94; }
-  85% { opacity: 0.9; }
-  90% { opacity: 0.95; }
-  95% { opacity: 0.92; }
-  100% { opacity: 0.9; }
-}
-
-.animate-film-flicker {
-  animation: film-flicker 8s infinite;
-}
-
-.experimental-blend {
-  @apply relative overflow-hidden;
-}
-
-.experimental-blend::after {
-  content: "";
-  @apply absolute inset-0 bg-[url('/lovable-uploads/3abc7576-f6db-4ec0-bb63-89a6a66d61e1.png')] bg-cover bg-center opacity-10 mix-blend-color-dodge pointer-events-none;
 }

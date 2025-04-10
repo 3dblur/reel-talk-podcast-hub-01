@@ -25,15 +25,12 @@ const hosts = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-16 md:py-24 relative overflow-hidden film-grain">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486718448742-163732cd1544')] bg-cover bg-center opacity-10 mix-blend-overlay" />
+    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent" aria-hidden="true" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-cinematic">
-            Meet The Voices Behind <span className="text-gradient">Reel Talk</span>
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet The Voices Behind Reel Talk</h2>
           <p className="text-muted-foreground">
             Our passionate team of film and TV enthusiasts bring decades of industry experience
             and a genuine love for the art of visual storytelling.
@@ -41,20 +38,18 @@ const AboutSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {hosts.map((host, index) => (
-            <Card key={host.name} className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-500 retro-vignette group" style={{ transitionDelay: `${index * 150}ms` }}>
-              <div className="aspect-square overflow-hidden relative">
+          {hosts.map((host) => (
+            <Card key={host.name} className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300">
+              <div className="aspect-square overflow-hidden">
                 <img 
                   src={host.image} 
                   alt={host.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-grain opacity-15 mix-blend-overlay pointer-events-none" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black to-transparent"></div>
               </div>
-              <CardContent className="p-6 relative">
-                <h3 className="text-xl font-semibold font-cinematic group-hover:text-primary transition-colors">{host.name}</h3>
-                <p className="text-primary text-sm mb-3 font-mono-alt tracking-wide">{host.role}</p>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold">{host.name}</h3>
+                <p className="text-primary text-sm mb-3">{host.role}</p>
                 <p className="text-sm text-foreground/80">{host.bio}</p>
               </CardContent>
             </Card>
@@ -62,35 +57,35 @@ const AboutSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center hover:border-primary/50 transition-all duration-500 group vintage-blur">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
+            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
               <Radio className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-lg font-medium mb-2 font-cinematic">Weekly Shows</h3>
+            <h3 className="text-lg font-medium mb-2">Weekly Shows</h3>
             <p className="text-sm text-foreground/70">New episodes every Friday, with special releases for major film events.</p>
           </Card>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center hover:border-primary/50 transition-all duration-500 group vintage-blur">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
+            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
               <ThumbsUp className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-lg font-medium mb-2 font-cinematic">Expert Reviews</h3>
+            <h3 className="text-lg font-medium mb-2">Expert Reviews</h3>
             <p className="text-sm text-foreground/70">Honest, insightful analysis of the latest releases and classic favorites.</p>
           </Card>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center hover:border-primary/50 transition-all duration-500 group vintage-blur">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
+            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
               <Star className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-lg font-medium mb-2 font-cinematic">Guest Interviews</h3>
+            <h3 className="text-lg font-medium mb-2">Guest Interviews</h3>
             <p className="text-sm text-foreground/70">Conversations with filmmakers, actors, and industry professionals.</p>
           </Card>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center hover:border-primary/50 transition-all duration-500 group vintage-blur">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
+            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
               <Award className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="text-lg font-medium mb-2 font-cinematic">Award Coverage</h3>
+            <h3 className="text-lg font-medium mb-2">Award Coverage</h3>
             <p className="text-sm text-foreground/70">Comprehensive analysis of award seasons and festival circuit winners.</p>
           </Card>
         </div>
