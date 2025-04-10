@@ -68,11 +68,14 @@ export default {
 					yellow: '#FFD700',
 					black: '#000000',
 					white: '#FFFFFF',
+					red: '#c82c25', // Added for the red background
 				},
 			},
 			fontFamily: {
 				cooper: ['Cooper Black', 'serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
+				alfa: ['Alfa Slab One', 'serif'],
+				pixel: ['VT323', 'monospace'], // Added for pixel font
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -99,12 +102,17 @@ export default {
 				'pulse-slow': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.8' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+				'float-slow': 'float 6s ease-in-out infinite',
 			},
 			backgroundImage: {
 				'grain': "url('/noise.png')",

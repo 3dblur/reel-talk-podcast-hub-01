@@ -51,6 +51,48 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Alfa Slab One', serif;
   }
+
+  /* Add custom font for pixel text */
+  @font-face {
+    font-family: 'VT323';
+    src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    font-display: swap;
+  }
+}
+
+@layer components {
+  .pixel-text {
+    text-shadow: 4px 4px 0px theme('colors.black');
+    letter-spacing: -0.02em;
+    text-rendering: optimizeLegibility;
+  }
+  
+  .pixel-text-subtitle {
+    text-shadow: 2px 2px 0px theme('colors.black');
+    letter-spacing: 0.05em;
+  }
+  
+  .pixel-button {
+    position: relative;
+    box-shadow: 4px 4px 0px theme('colors.black');
+    transition: all 0.2s ease;
+  }
+  
+  .pixel-button:active {
+    box-shadow: 2px 2px 0px theme('colors.black');
+    transform: translate(2px, 2px);
+  }
+  
+  .pixel-stat {
+    @apply p-4 border-2 border-white/20 bg-black/30 rounded-lg backdrop-blur-sm;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+  }
+  
+  .pixel-stat:hover {
+    @apply border-pulp-yellow/40 bg-black/40;
+    transform: translateY(-3px);
+  }
 }
 
 @layer utilities {
@@ -69,5 +111,26 @@
   
   .retro-shadow {
     text-shadow: 3px 3px 0px theme('colors.pulp.yellow');
+  }
+  
+  .bg-pixelated-border {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='8' viewBox='0 0 16 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H4V4H0V0Z' fill='%23000000'/%3E%3Cpath d='M4 4H8V8H4V4Z' fill='%23000000'/%3E%3Cpath d='M8 0H12V4H8V0Z' fill='%23000000'/%3E%3Cpath d='M12 4H16V8H12V4Z' fill='%23000000'/%3E%3C/svg%3E");
+    background-size: 16px 8px;
+  }
+  
+  .animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
 }
