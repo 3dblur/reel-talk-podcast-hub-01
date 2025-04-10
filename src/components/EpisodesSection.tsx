@@ -1,39 +1,31 @@
-
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import EpisodePlayer from './EpisodePlayer';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
-
-const episodes = [
-  {
-    id: 1,
-    title: "The Rise of Streaming Wars",
-    date: "Apr 10, 2025",
-    duration: "58 min",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-    description: "George and James discuss how streaming platforms are changing the landscape of film distribution and what it means for theaters."
-  },
-  {
-    id: 2,
-    title: "Phil Dunster: Ted Lasso & Beyond",
-    date: "Apr 3, 2025",
-    duration: "62 min",
-    image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0",
-    description: "Special guest Phil Dunster talks about his role as Jamie Tartt, the actor's life, and plays Cast List Countdown."
-  },
-  {
-    id: 3,
-    title: "Director Spotlight: Nolan",
-    date: "Mar 27, 2025",
-    duration: "65 min",
-    image: "https://images.unsplash.com/photo-1535016120720-40c646be5580",
-    description: "Analyzing Christopher Nolan's unique visual style, narrative techniques, and impact on contemporary cinema."
-  }
-];
-
+const episodes = [{
+  id: 1,
+  title: "The Rise of Streaming Wars",
+  date: "Apr 10, 2025",
+  duration: "58 min",
+  image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+  description: "George and James discuss how streaming platforms are changing the landscape of film distribution and what it means for theaters."
+}, {
+  id: 2,
+  title: "Phil Dunster: Ted Lasso & Beyond",
+  date: "Apr 3, 2025",
+  duration: "62 min",
+  image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0",
+  description: "Special guest Phil Dunster talks about his role as Jamie Tartt, the actor's life, and plays Cast List Countdown."
+}, {
+  id: 3,
+  title: "Director Spotlight: Nolan",
+  date: "Mar 27, 2025",
+  duration: "65 min",
+  image: "https://images.unsplash.com/photo-1535016120720-40c646be5580",
+  description: "Analyzing Christopher Nolan's unique visual style, narrative techniques, and impact on contemporary cinema."
+}];
 const EpisodesSection = () => {
-  return (
-    <section id="episodes" className="py-16 md:py-24 bg-pulp-red/90 film-grain">
+  return <section id="episodes" className="py-16 md:py-24 film-grain bg-[#cd0644]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div>
@@ -46,18 +38,10 @@ const EpisodesSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {episodes.map((episode) => (
-            <CardContainer key={episode.id} containerClassName="py-0">
+          {episodes.map(episode => <CardContainer key={episode.id} containerClassName="py-0">
               <CardBody className="bg-black/40 border-2 border-pulp-yellow/40 w-full h-auto rounded-xl p-4">
-                <CardItem
-                  translateZ="40"
-                  className="aspect-video overflow-hidden mb-4 border-2 border-pulp-yellow/40 w-full"
-                >
-                  <img 
-                    src={episode.image} 
-                    alt={episode.title} 
-                    className="w-full h-full object-cover"
-                  />
+                <CardItem translateZ="40" className="aspect-video overflow-hidden mb-4 border-2 border-pulp-yellow/40 w-full">
+                  <img src={episode.image} alt={episode.title} className="w-full h-full object-cover" />
                 </CardItem>
                 
                 <div className="p-2 w-full">
@@ -85,12 +69,9 @@ const EpisodesSection = () => {
                   </CardItem>
                 </div>
               </CardBody>
-            </CardContainer>
-          ))}
+            </CardContainer>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default EpisodesSection;
