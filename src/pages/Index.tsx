@@ -9,7 +9,11 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground film-grain">
+    <div className="min-h-screen bg-background text-foreground film-grain experimental-blend">
+      <div className="fixed inset-0 pointer-events-none z-10">
+        <div className="absolute inset-0 bg-grain opacity-10 mix-blend-overlay"></div>
+        <div className="absolute inset-0 animate-film-flicker opacity-30"></div>
+      </div>
       <Navbar />
       <HeroSection />
       <EpisodesSection />

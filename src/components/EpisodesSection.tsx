@@ -32,11 +32,13 @@ const episodes = [
 
 const EpisodesSection = () => {
   return (
-    <section id="episodes" className="py-16 md:py-24 bg-card/30 film-grain analog-glow">
+    <section id="episodes" className="py-16 md:py-24 bg-card/30 film-grain analog-glow arthouse-overlay">
+      <div className="absolute inset-0 bg-[url('/lovable-uploads/d373a313-fe5c-4306-a6aa-030ba4eac4d7.png')] bg-repeat opacity-5 mix-blend-overlay" aria-hidden="true" />
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 font-cinematic relative inline-block">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 font-cinematic relative inline-block uppercase tracking-wide">
               Latest Episodes
               <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary"></span>
             </h2>
@@ -44,7 +46,7 @@ const EpisodesSection = () => {
               Tune in to our latest conversations on everything from blockbuster hits to indie gems.
             </p>
           </div>
-          <Button variant="ghost" className="mt-4 md:mt-0 group">
+          <Button variant="ghost" className="mt-4 md:mt-0 group text-primary hover:text-primary/90">
             View All Episodes <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>

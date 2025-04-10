@@ -25,12 +25,24 @@ const EpisodePlayer = ({ title, date, duration, image, description }: EpisodePla
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="absolute inset-0 bg-grain opacity-20 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-grain opacity-30 mix-blend-overlay pointer-events-none" />
+        
+        {/* Film strip perforation effect on the side */}
+        <div className="absolute top-0 left-0 w-6 h-full flex flex-col justify-between opacity-70 pointer-events-none">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="w-4 h-4 bg-black/80 border border-white/20 rounded-sm"></div>
+          ))}
+        </div>
+        
+        {/* Vintage timestamp overlay */}
+        <div className="absolute bottom-3 right-3 font-mono-alt text-xs text-white/70 bg-black/30 px-2 py-1 rounded">
+          REC: {date.replace(/\s/g, '')}
+        </div>
       </div>
-      <CardContent className="p-6 relative">
+      <CardContent className="p-6 relative bg-gradient-to-b from-black/50 to-card">
         <div className="flex justify-between items-start mb-3">
           <div>
-            <h3 className="text-xl font-semibold mb-1 font-cinematic">{title}</h3>
+            <h3 className="text-xl font-semibold mb-1 font-cinematic text-white group-hover:text-primary transition-colors">{title}</h3>
             <div className="flex items-center text-sm text-muted-foreground">
               <span className="font-mono-alt">{date}</span>
               <span className="mx-2 opacity-50">•</span>
@@ -59,7 +71,7 @@ const EpisodePlayer = ({ title, date, duration, image, description }: EpisodePla
               <span className="relative z-10">
                 {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-primary via-cinema-blue to-primary opacity-0 group-hover/play:opacity-100 transition-opacity duration-500"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-primary via-cinema-amber to-primary opacity-0 group-hover/play:opacity-100 transition-opacity duration-500"></span>
             </Button>
             
             <Button size="icon" variant="ghost" className="rounded-full h-9 w-9 text-muted-foreground hover:text-white hover:bg-primary/20 transition-colors">
