@@ -63,13 +63,16 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				cinema: {
-					purple: '#8B5CF6',
-					darkPurple: '#1A1F2C',
-					blue: '#0EA5E9',
-					darkBlue: '#172554',
-					lightGray: '#F1F0FB',
+				pulp: {
+					pink: '#F6427B',
+					yellow: '#FFD700',
+					black: '#000000',
+					white: '#FFFFFF',
 				},
+			},
+			fontFamily: {
+				cooper: ['Cooper Black', 'serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
