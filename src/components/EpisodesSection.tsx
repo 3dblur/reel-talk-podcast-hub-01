@@ -2,6 +2,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import EpisodePlayer from './EpisodePlayer';
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 
 const episodes = [
   {
@@ -46,25 +47,45 @@ const EpisodesSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {episodes.map((episode) => (
-            <div key={episode.id} className="pixel-card transition-all duration-300 hover:transform hover:scale-105">
-              <div className="aspect-video overflow-hidden mb-4 border-2 border-pulp-yellow/40">
-                <img src={episode.image} alt={episode.title} className="w-full h-full object-cover" />
-              </div>
-              
-              <div className="p-2">
-                <div className="flex justify-between mb-2">
-                  <span className="text-pulp-yellow/90 font-pixel">{episode.date}</span>
-                  <span className="text-white/70 font-pixel">{episode.duration}</span>
+            <CardContainer key={episode.id} containerClassName="py-0">
+              <CardBody className="bg-black/40 border-2 border-pulp-yellow/40 w-full h-auto rounded-xl p-4">
+                <CardItem
+                  translateZ="40"
+                  className="aspect-video overflow-hidden mb-4 border-2 border-pulp-yellow/40 w-full"
+                >
+                  <img 
+                    src={episode.image} 
+                    alt={episode.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </CardItem>
+                
+                <div className="p-2 w-full">
+                  <div className="flex justify-between mb-2 w-full">
+                    <CardItem translateZ="30" className="text-pulp-yellow/90 font-pixel w-auto">
+                      {episode.date}
+                    </CardItem>
+                    <CardItem translateZ="30" className="text-white/70 font-pixel w-auto">
+                      {episode.duration}
+                    </CardItem>
+                  </div>
+                  
+                  <CardItem translateZ="50" className="text-xl font-bold mb-2 text-pulp-yellow font-pixel w-full">
+                    {episode.title}
+                  </CardItem>
+                  
+                  <CardItem translateZ="40" className="text-white/80 text-sm mb-4 font-pixel w-full">
+                    {episode.description}
+                  </CardItem>
+                  
+                  <CardItem translateZ="60" className="w-full">
+                    <Button variant="default" size="sm" className="w-full bg-pulp-yellow text-pulp-black hover:bg-pulp-yellow/90 font-pixel pixel-button">
+                      PLAY EPISODE
+                    </Button>
+                  </CardItem>
                 </div>
-                
-                <h3 className="text-xl font-bold mb-2 text-pulp-yellow font-pixel">{episode.title}</h3>
-                <p className="text-white/80 text-sm mb-4 font-pixel">{episode.description}</p>
-                
-                <Button variant="default" size="sm" className="w-full bg-pulp-yellow text-pulp-black hover:bg-pulp-yellow/90 font-pixel pixel-button">
-                  PLAY EPISODE
-                </Button>
-              </div>
-            </div>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </div>

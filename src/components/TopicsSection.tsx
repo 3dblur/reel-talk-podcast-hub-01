@@ -1,6 +1,6 @@
 
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 
 const topics = [
   {
@@ -36,16 +36,20 @@ const TopicsSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {topics.map((topic) => (
-            <div key={topic.category} className="pixel-card">
-              <h3 className="text-xl font-bold mb-4 text-pulp-yellow font-pixel">{topic.category}</h3>
-              <div className="flex flex-wrap gap-2">
-                {topic.items.map((item) => (
-                  <Badge key={item} variant="secondary" className="py-1 bg-pulp-yellow/20 text-pulp-yellow border border-pulp-yellow/30 font-pixel">
-                    {item}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+            <CardContainer key={topic.category} containerClassName="py-0">
+              <CardBody className="bg-black/40 border-2 border-pulp-yellow/40 w-full h-auto rounded-xl p-4">
+                <CardItem translateZ="30" className="text-xl font-bold mb-4 text-pulp-yellow font-pixel w-full">
+                  {topic.category}
+                </CardItem>
+                <CardItem translateZ="40" className="flex flex-wrap gap-2 w-full">
+                  {topic.items.map((item) => (
+                    <Badge key={item} variant="secondary" className="py-1 bg-pulp-yellow/20 text-pulp-yellow border border-pulp-yellow/30 font-pixel">
+                      {item}
+                    </Badge>
+                  ))}
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </div>
