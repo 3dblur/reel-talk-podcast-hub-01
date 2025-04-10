@@ -19,13 +19,14 @@ const hosts = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent" aria-hidden="true" />
+    <section id="about" className="py-16 md:py-24 relative overflow-hidden bg-black">
+      <div className="absolute inset-0 bg-gradient-radial from-pulp-red/20 to-transparent" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 z-0" aria-hidden="true" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pulp-pink" style={{ fontFamily: "'Alfa Slab One', serif" }}>Meet Your Hosts</h2>
-          <p className="text-muted-foreground">
+          <h2 className="section-title">MEET YOUR HOSTS</h2>
+          <p className="text-white/80 font-pixel">
             The dynamic British duo bringing you weekly episodes packed with film reviews, industry news, 
             trivia games, and celebrity interviews.
           </p>
@@ -33,55 +34,55 @@ const AboutSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {hosts.map((host) => (
-            <Card key={host.name} className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300">
-              <div className="aspect-square overflow-hidden">
+            <div key={host.name} className="pixel-card hover:border-pulp-yellow">
+              <div className="aspect-square overflow-hidden border-2 border-pulp-yellow/30 mb-4">
                 <img 
                   src={host.image} 
                   alt={host.name} 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold">{host.name}</h3>
-                <p className="text-primary text-sm mb-3">{host.role}</p>
-                <p className="text-sm text-foreground/80">{host.bio}</p>
-              </CardContent>
-            </Card>
+              <div className="p-2">
+                <h3 className="text-2xl font-bold text-pulp-yellow font-pixel">{host.name}</h3>
+                <p className="text-pulp-yellow/70 font-pixel mb-3">{host.role}</p>
+                <p className="text-white/80 font-pixel">{host.bio}</p>
+              </div>
+            </div>
           ))}
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-              <Radio className="h-7 w-7 text-primary" />
+          <div className="pixel-card text-center">
+            <div className="mx-auto bg-pulp-yellow/20 p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4 border border-pulp-yellow/30">
+              <Radio className="h-7 w-7 text-pulp-yellow" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Weekly Shows</h3>
-            <p className="text-sm text-foreground/70">New episodes every Wednesday, with special releases for major film events.</p>
-          </Card>
+            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">WEEKLY SHOWS</h3>
+            <p className="text-sm text-white/80 font-pixel">New episodes every Wednesday, with special releases for major film events.</p>
+          </div>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-              <ThumbsUp className="h-7 w-7 text-primary" />
+          <div className="pixel-card text-center">
+            <div className="mx-auto bg-pulp-yellow/20 p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4 border border-pulp-yellow/30">
+              <ThumbsUp className="h-7 w-7 text-pulp-yellow" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Expert Reviews</h3>
-            <p className="text-sm text-foreground/70">In-depth, candid reviews of new releases and classics, balancing critical analysis with personal reactions.</p>
-          </Card>
+            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">EXPERT REVIEWS</h3>
+            <p className="text-sm text-white/80 font-pixel">In-depth, candid reviews of new releases and classics, balancing critical analysis with personal reactions.</p>
+          </div>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-              <Star className="h-7 w-7 text-primary" />
+          <div className="pixel-card text-center">
+            <div className="mx-auto bg-pulp-yellow/20 p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4 border border-pulp-yellow/30">
+              <Star className="h-7 w-7 text-pulp-yellow" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Guest Interviews</h3>
-            <p className="text-sm text-foreground/70">Conversations with actors, directors, and filmmakers about their craft, experiences, and favorite films.</p>
-          </Card>
+            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">GUEST INTERVIEWS</h3>
+            <p className="text-sm text-white/80 font-pixel">Conversations with actors, directors, and filmmakers about their craft, experiences, and favorite films.</p>
+          </div>
           
-          <Card className="bg-card/50 backdrop-blur-sm border-border p-6 text-center">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4">
-              <Award className="h-7 w-7 text-primary" />
+          <div className="pixel-card text-center">
+            <div className="mx-auto bg-pulp-yellow/20 p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4 border border-pulp-yellow/30">
+              <Award className="h-7 w-7 text-pulp-yellow" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Interactive Games</h3>
-            <p className="text-sm text-foreground/70">Fan-favorite games like Cast List Countdown that test film knowledge and quick thinking.</p>
-          </Card>
+            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">INTERACTIVE GAMES</h3>
+            <p className="text-sm text-white/80 font-pixel">Fan-favorite games like Cast List Countdown that test film knowledge and quick thinking.</p>
+          </div>
         </div>
       </div>
     </section>

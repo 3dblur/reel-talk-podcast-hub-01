@@ -44,12 +44,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'VT323', monospace;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Alfa Slab One', serif;
+    font-family: 'VT323', monospace;
   }
 
   /* Add custom font for pixel text */
@@ -62,13 +62,14 @@
 
 @layer components {
   .pixel-text {
-    text-shadow: 4px 4px 0px theme('colors.black');
-    letter-spacing: -0.02em;
+    text-shadow: 6px 6px 0px theme('colors.black');
+    letter-spacing: 0.05em;
     text-rendering: optimizeLegibility;
+    line-height: 0.9;
   }
   
   .pixel-text-subtitle {
-    text-shadow: 2px 2px 0px theme('colors.black');
+    text-shadow: 4px 4px 0px theme('colors.black');
     letter-spacing: 0.05em;
   }
   
@@ -76,6 +77,8 @@
     position: relative;
     box-shadow: 4px 4px 0px theme('colors.black');
     transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
   .pixel-button:active {
@@ -84,7 +87,7 @@
   }
   
   .pixel-stat {
-    @apply p-4 border-2 border-white/20 bg-black/30 rounded-lg backdrop-blur-sm;
+    @apply p-4 border-2 border-white/20 bg-black/30 rounded-md backdrop-blur-sm;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
     transition: all 0.2s ease;
   }
@@ -92,6 +95,32 @@
   .pixel-stat:hover {
     @apply border-pulp-yellow/40 bg-black/40;
     transform: translateY(-3px);
+  }
+  
+  .pixel-card {
+    @apply border-2 border-white/20 bg-black/30 rounded-md backdrop-blur-sm p-4;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+  }
+  
+  .pixel-card:hover {
+    @apply border-pulp-yellow/40;
+    transform: translateY(-2px);
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4 text-pulp-yellow;
+    text-shadow: 4px 4px 0px theme('colors.black');
+    letter-spacing: 0.05em;
+    text-rendering: optimizeLegibility;
+    font-family: 'VT323', monospace;
+  }
+  
+  .section-subtitle {
+    @apply text-xl md:text-2xl mb-2 text-white;
+    text-shadow: 2px 2px 0px theme('colors.black');
+    letter-spacing: 0.03em;
+    font-family: 'VT323', monospace;
   }
 }
 
@@ -132,5 +161,10 @@
     100% {
       transform: translateY(0px);
     }
+  }
+  
+  .font-pixel {
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.05em;
   }
 }

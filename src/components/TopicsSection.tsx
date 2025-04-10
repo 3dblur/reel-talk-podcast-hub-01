@@ -23,29 +23,29 @@ const topics = [
 
 const TopicsSection = () => {
   return (
-    <section id="topics" className="py-16 md:py-24 bg-card/30 film-grain">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="topics" className="py-16 md:py-24 bg-pulp-red/80 film-grain">
+      <div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 z-0" aria-hidden="true" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pulp-pink" style={{ fontFamily: "'Alfa Slab One', serif" }}>Signature Segments</h2>
-          <p className="text-muted-foreground">
+          <h2 className="section-title">SIGNATURE SEGMENTS</h2>
+          <p className="text-white/80 font-pixel">
             From interactive games to in-depth reviews, our signature segments offer something for every film and TV fan.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {topics.map((topic) => (
-            <Card key={topic.category} className="bg-card/50 backdrop-blur-sm border-pulp-pink/20">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4 text-pulp-yellow" style={{ fontFamily: "'Alfa Slab One', serif" }}>{topic.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {topic.items.map((item) => (
-                    <Badge key={item} variant="secondary" className="py-1 bg-pulp-pink/10 text-pulp-pink border border-pulp-pink/20">
-                      {item}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <div key={topic.category} className="pixel-card">
+              <h3 className="text-xl font-bold mb-4 text-pulp-yellow font-pixel">{topic.category}</h3>
+              <div className="flex flex-wrap gap-2">
+                {topic.items.map((item) => (
+                  <Badge key={item} variant="secondary" className="py-1 bg-pulp-yellow/20 text-pulp-yellow border border-pulp-yellow/30 font-pixel">
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

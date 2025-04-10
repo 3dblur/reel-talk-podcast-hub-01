@@ -68,7 +68,7 @@ export default {
 					yellow: '#FFD700',
 					black: '#000000',
 					white: '#FFFFFF',
-					red: '#c82c25', // Added for the red background
+					red: '#c82c25', // Darker red
 				},
 			},
 			fontFamily: {
@@ -106,6 +106,10 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
+				},
+				'blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' },
 				}
 			},
 			animation: {
@@ -113,6 +117,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
 				'float-slow': 'float 6s ease-in-out infinite',
+				'blink': 'blink 1s step-start infinite',
 			},
 			backgroundImage: {
 				'grain': "url('/noise.png')",

@@ -32,28 +32,39 @@ const episodes = [
 
 const EpisodesSection = () => {
   return (
-    <section id="episodes" className="py-16 md:py-24 bg-card/50 film-grain">
+    <section id="episodes" className="py-16 md:py-24 bg-pulp-red/90 film-grain">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-pulp-pink" style={{ fontFamily: "'Alfa Slab One', serif" }}>Latest Episodes</h2>
-            <p className="text-muted-foreground max-w-2xl">Tune in to our latest conversations on everything from blockbuster hits to indie gems.</p>
+            <h2 className="section-title">LATEST EPISODES</h2>
+            <p className="text-white/80 max-w-2xl font-pixel">Tune in to our latest conversations on everything from blockbuster hits to indie gems.</p>
           </div>
-          <Button variant="ghost" className="mt-4 md:mt-0 text-pulp-yellow hover:text-pulp-yellow hover:bg-pulp-yellow/10">
-            View All Episodes <ArrowRight className="ml-2 h-4 w-4" />
+          <Button variant="ghost" className="mt-4 md:mt-0 text-pulp-yellow hover:text-pulp-yellow hover:bg-pulp-yellow/10 font-pixel">
+            VIEW ALL EPISODES <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {episodes.map((episode) => (
-            <EpisodePlayer
-              key={episode.id}
-              title={episode.title}
-              date={episode.date}
-              duration={episode.duration}
-              image={episode.image}
-              description={episode.description}
-            />
+            <div key={episode.id} className="pixel-card transition-all duration-300 hover:transform hover:scale-105">
+              <div className="aspect-video overflow-hidden mb-4 border-2 border-pulp-yellow/40">
+                <img src={episode.image} alt={episode.title} className="w-full h-full object-cover" />
+              </div>
+              
+              <div className="p-2">
+                <div className="flex justify-between mb-2">
+                  <span className="text-pulp-yellow/90 font-pixel">{episode.date}</span>
+                  <span className="text-white/70 font-pixel">{episode.duration}</span>
+                </div>
+                
+                <h3 className="text-xl font-bold mb-2 text-pulp-yellow font-pixel">{episode.title}</h3>
+                <p className="text-white/80 text-sm mb-4 font-pixel">{episode.description}</p>
+                
+                <Button variant="default" size="sm" className="w-full bg-pulp-yellow text-pulp-black hover:bg-pulp-yellow/90 font-pixel pixel-button">
+                  PLAY EPISODE
+                </Button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
