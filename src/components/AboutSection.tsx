@@ -1,78 +1,138 @@
-import { Award, Radio, Star, ThumbsUp } from 'lucide-react';
-const hosts = [{
-  name: "George",
-  role: "Co-Host",
-  image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
-  bio: "The thoughtful film buff with a knack for spotting pop culture connections. George brings warm, inquisitive, and slightly cheeky commentary to every episode."
-}, {
-  name: "James",
-  role: "Co-Host",
-  image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
-  bio: "The energetic cinephile who brings humor and enthusiasm, often leading games and sparking lively debates. James' style is witty, playful, and engaging."
-}];
+import React from 'react';
+// Added Zap icon
+import { Twitter, Instagram, Youtube, Globe, Zap, Mic } from 'lucide-react';
+
+const brandRed = '#C72C4F';
+const brandYellow = '#FFEA4F';
+
+const hosts = [
+  {
+    name: "George",
+    role: "Co-Host",
+    image: "/lovable-uploads/img1.png", // Replace with actual path
+    bio: "The thoughtful film buff. George brings warm, inquisitive, and slightly cheeky commentary.", // Shortened for space if needed
+    socials: [
+      { platform: 'Twitter', url: '#', icon: Twitter },
+      { platform: 'Instagram', url: '#', icon: Instagram },
+      { platform: 'Website', url: '#', icon: Globe },
+    ],
+    // NEW Quirky Fact
+    quirkyFact: "Has successfully negotiated peace treaties between warring factions of garden gnomes in three separate dimensions.",
+    bgColor: brandRed,
+    textColor: 'text-white',
+    accentColor: brandYellow,
+    accentTextColor: 'text-gray-900'
+  },
+  {
+    name: "James",
+    role: "Co-Host",
+    image: "/lovable-uploads/img2.png", // Replace with actual path
+    bio: "The energetic cinephile. James' style is witty, playful, and engaging, often leading games.", // Shortened
+    socials: [
+      { platform: 'Twitter', url: '#', icon: Twitter },
+      { platform: 'Youtube', url: '#', icon: Youtube },
+    ],
+    // NEW Quirky Fact
+    quirkyFact: "Claims his cat provides all his best movie review insights via elaborately coded meows.",
+    bgColor: brandYellow,
+    textColor: 'text-gray-900',
+    accentColor: brandRed,
+    accentTextColor: 'text-white'
+  }
+];
+
 const AboutSection = () => {
-  return <section id="about" className="py-16 md:py-24 relative overflow-hidden bg-pulp-yellow/5">
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-radial from-pulp-yellow/10 to-transparent bg-gray-950" />
-      
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 bg-gray-950">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block bg-pulp-yellow px-6 py-2 mb-4 transform -rotate-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-black font-pixel">MEET YOUR HOSTS</h2>
-          </div>
-          <p className="text-white/80 font-pixel">
-            The dynamic British duo bringing you weekly episodes packed with film reviews, industry news, 
+  return (
+    <section id="about" className="py-16 md:py-24 bg-gray-100">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <h2 style={{ color: brandRed }} className="text-3xl md:text-4xl font-bold mb-4">
+            MEET YOUR HOSTS
+          </h2>
+          <p className="text-lg text-gray-600">
+            The dynamic British duo bringing you weekly episodes packed with film reviews, industry news,
             trivia games, and celebrity interviews.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {hosts.map(host => <div key={host.name} className="bg-black border-4 border-pulp-yellow transform hover:scale-[1.02] transition-all duration-300">
-              <div className="aspect-square overflow-hidden border-b-4 border-pulp-yellow mb-4">
-                <img src={host.image} alt={host.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-3xl font-bold text-pulp-yellow font-pixel">{host.name}</h3>
-                <p className="text-pulp-yellow/70 font-pixel mb-3">{host.role}</p>
-                <p className="text-white/80 font-pixel">{host.bio}</p>
-              </div>
-            </div>)}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
-          <div className="bg-black border-2 border-pulp-yellow text-center p-6">
-            <div className="mx-auto bg-pulp-yellow p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4">
-              <Radio className="h-7 w-7 text-black" />
-            </div>
-            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">WEEKLY SHOWS</h3>
-            <p className="text-sm text-white/80 font-pixel">New episodes every Wednesday, with special releases for major film events.</p>
-          </div>
-          
-          <div className="bg-black border-2 border-pulp-yellow text-center p-6">
-            <div className="mx-auto bg-pulp-yellow p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4">
-              <ThumbsUp className="h-7 w-7 text-black" />
-            </div>
-            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">EXPERT REVIEWS</h3>
-            <p className="text-sm text-white/80 font-pixel">In-depth, candid reviews of new releases and classics, balancing critical analysis with personal reactions.</p>
-          </div>
-          
-          <div className="bg-black border-2 border-pulp-yellow text-center p-6">
-            <div className="mx-auto bg-pulp-yellow p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4">
-              <Star className="h-7 w-7 text-black" />
-            </div>
-            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">GUEST INTERVIEWS</h3>
-            <p className="text-sm text-white/80 font-pixel">Conversations with actors, directors, and filmmakers about their craft, experiences, and favorite films.</p>
-          </div>
-          
-          <div className="bg-black border-2 border-pulp-yellow text-center p-6">
-            <div className="mx-auto bg-pulp-yellow p-3 rounded-md w-14 h-14 flex items-center justify-center mb-4">
-              <Award className="h-7 w-7 text-black" />
-            </div>
-            <h3 className="text-lg font-medium mb-2 text-pulp-yellow font-pixel">INTERACTIVE GAMES</h3>
-            <p className="text-sm text-white/80 font-pixel">Fan-favorite games like Cast List Countdown that test film knowledge and quick thinking.</p>
-          </div>
+
+        {/* Changed max-width to allow cards to be slightly wider */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {hosts.map((host) => {
+            const iconColorClass = host.textColor === 'text-white' ? 'text-white hover:text-opacity-80' : 'text-gray-700 hover:text-black';
+            const factBgColor = host.accentColor;
+            const factTextColor = host.accentTextColor;
+
+            return (
+              <div
+                key={host.name}
+                style={{ backgroundColor: host.bgColor }}
+                // Added overflow-hidden here
+                className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transform hover:scale-[1.03] transition-transform duration-300 ${host.textColor}`}
+              >
+                {/* Image Container - Takes significant width on MD+ screens */}
+                {/* Ensure image path is correct and image file exists */}
+                <div className="md:w-2/5 flex-shrink-0">
+                   {/* Image fills container width, height adjusts (or use aspect-ratio) */}
+                   {/* Removed border, check if image styling is correct */}
+                  <img
+                    src={host.image}
+                    alt={`${host.name} caricature`}
+                    // Ensure image covers the area, adjust height/aspect ratio as needed
+                    className="w-full h-full object-cover"
+                    // You might need min-height or aspect-ratio utilities depending on images
+                    // e.g., className="w-full h-full object-cover aspect-square"
+                  />
+                </div>
+
+                {/* Text Content Container */}
+                <div className="md:w-3/5 p-6 flex flex-col"> {/* Added flex flex-col */}
+                  {/* Name */}
+                  <h3 className="text-3xl font-bold mb-3">{host.name}</h3>
+
+                  {/* Bio */}
+                  <p className="text-base opacity-90 mb-5">{host.bio}</p>
+
+                  {/* Social Links */}
+                  <div className="mb-5">
+                    <h4 className="font-semibold mb-2 opacity-80 text-sm uppercase tracking-wider">Connect</h4>
+                    <div className="flex space-x-4 items-center">
+                      {host.socials.map(social => (
+                        <a
+                          key={social.platform}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${host.name} on ${social.platform}`}
+                          className={`transition-opacity ${iconColorClass}`}
+                        >
+                          <social.icon className="w-6 h-6" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Quirky Fact / Easter Egg - Using Zap icon */}
+                  {/* Added mt-auto to push to bottom */}
+                  <div
+                    style={{ backgroundColor: factBgColor }}
+                    className={`mt-auto p-4 rounded-lg ${factTextColor} text-sm`}
+                  >
+                     <div className="flex items-start gap-2">
+                       {/* Changed icon to Zap */}
+                       <Zap className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                       {/* Changed wording */}
+                       <p><strong className="font-semibold">Host Secret:</strong> {host.quirkyFact}</p>
+                     </div>
+                  </div>
+
+                </div> {/* End Text Content Container */}
+              </div> // End Card
+            );
+          })}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;
