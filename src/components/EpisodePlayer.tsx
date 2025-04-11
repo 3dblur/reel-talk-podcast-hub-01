@@ -1,80 +1,50 @@
-
-import { useState } from 'react';
-import { Play, Pause, Volume2, SkipBack, SkipForward } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
-import { Card, CardContent } from '@/components/ui/card';
+\
+import React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog"; // Assuming you have a Dialog component
 
 interface EpisodePlayerProps {
-  title: string;
-  date: string;
-  duration: string;
-  image: string;
-  description: string;
+  videoId: string | null;
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string; // Optional title for the dialog
 }
 
-const EpisodePlayer = ({ title, date, duration, image, description }: EpisodePlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const EpisodePlayer: React.FC<EpisodePlayerProps> = ({ videoId, isOpen, onClose, title }) => {
+  if (!isOpen || !videoId) {
+    return null;
+  }
+
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Added autoplay
 
   return (
-    <Card className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300">
-      <div className="relative aspect-video overflow-hidden">
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-      </div>
-      <CardContent className="p-6">
-        <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="text-xl font-semibold mb-1">{title}</h3>
-            <div className="flex items-center text-sm text-muted-foreground">
-              <span>{date}</span>
-              <span className="mx-2">•</span>
-              <span>{duration}</span>
-            </div>
-          </div>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-3xl p-0">
+        {/* Optional Header */}
+        {/* <DialogHeader className="p-4 pb-0">
+          {title && <DialogTitle>{title}</DialogTitle>}
+           <DialogDescription>
+            Playing episode...
+          </DialogDescription>
+        </DialogHeader> */}
+        <div className="aspect-video relative">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src={embedUrl}
+            title={title || "YouTube video player"}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
-        
-        <p className="text-sm text-foreground/80 mb-4 line-clamp-2">{description}</p>
-        
-        <div className="space-y-4">
-          <div className="relative h-1 bg-secondary rounded-full overflow-hidden">
-            <div className="absolute h-full bg-primary w-1/3 rounded-full" />
-          </div>
-          
-          <div className="flex items-center justify-between gap-4">
-            <Button size="icon" variant="ghost" className="rounded-full h-9 w-9">
-              <SkipBack className="h-4 w-4" />
-            </Button>
-            
-            <Button 
-              onClick={() => setIsPlaying(!isPlaying)} 
-              size="icon"
-              className="rounded-full h-10 w-10 bg-primary hover:bg-primary/90"
-            >
-              {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
-            </Button>
-            
-            <Button size="icon" variant="ghost" className="rounded-full h-9 w-9">
-              <SkipForward className="h-4 w-4" />
-            </Button>
-            
-            <div className="flex items-center gap-2">
-              <Volume2 className="h-4 w-4 text-muted-foreground" />
-              <Slider
-                defaultValue={[70]}
-                max={100}
-                step={1}
-                className="w-20"
-              />
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      </DialogContent>
+    </Dialog>
   );
 };
 
