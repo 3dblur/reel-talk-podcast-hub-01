@@ -30,7 +30,7 @@ const EpisodePlayer: React.FC<EpisodePlayerProps> = ({ videoId, isOpen, onClose,
         }
       }}
     >
-      <DialogContent className="max-w-3xl p-0">
+      <DialogContent style={{ backgroundColor: '#CD0744', color: '#FDE300' }} className="max-w-3xl p-0">
         {/* Optional Header */}
         {/* <DialogHeader className="p-4 pb-0">
           {title && <DialogTitle>{title}</DialogTitle>}

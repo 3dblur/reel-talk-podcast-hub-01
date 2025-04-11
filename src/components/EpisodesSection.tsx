@@ -1,7 +1,10 @@
+ 
 import React, { useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
 import { Button } from './ui/button'; // Assuming Button component for interaction
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'; // Assuming Card component for structure
+// Remove unused Card imports if no longer needed
+// import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { CardContainer, CardBody, CardItem } from './ui/3d-card'; // Import the 3D card components
 
 // Define the structure for an episode
 interface Episode {
@@ -52,29 +55,42 @@ const EpisodesSection: React.FC = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Episodes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {episodes.map((episode) => (
-            <Card key={episode.id} className="overflow-hidden flex flex-col">
-              <CardHeader className="p-0">
-                <img
-                  src={episode.thumbnailUrl}
-                  alt={`Thumbnail for ${episode.title}`}
-                  className="w-full h-auto aspect-video object-cover cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => handlePlayClick(episode.id, episode.title)}
-                />
-              </CardHeader>
-              <CardContent className="p-4 flex-grow">
-                <CardTitle className="text-lg font-semibold mb-2">{episode.title}</CardTitle>
-                {/* Add description or other details here if needed */}
-              </CardContent>
-              <CardFooter className="p-4 pt-0">
-                <Button
-                  variant="outline"
-                  className="w-full"
+            // Wrap each card with CardContainer
+            <CardContainer key={episode.id} className="inter-var" containerClassName="p-0"> {/* Removed default py-20 */}
+              <CardBody className="bg-card text-card-foreground relative group/card hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto h-auto rounded-xl p-6 border flex flex-col">
+                <CardItem
+                  translateZ="50"
+                  className="w-full cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => handlePlayClick(episode.id, episode.title)}
                 >
-                  Play Episode
-                </Button>
-              </CardFooter>
-            </Card>
+                  <img
+                    src={episode.thumbnailUrl}
+                    alt={`Thumbnail for ${episode.title}`}
+                    className="w-full h-auto aspect-video object-cover rounded-t-xl group-hover/card:shadow-xl" // Added rounded-t-xl
+                  />
+                </CardItem>
+                <CardItem
+                  translateZ="60"
+                  className="text-xl font-semibold my-4 flex-grow" // Added flex-grow
+                >
+                  {episode.title}
+                </CardItem>
+                {/* Add description or other details here if needed */}
+                <CardItem
+                  translateZ="70"
+                  as="div" // Use div for CardItem containing the button
+                  className="w-full mt-auto" // Added mt-auto to push button down
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => handlePlayClick(episode.id, episode.title)}
+                  >
+                    Play Episode
+                  </Button>
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 // Added Zap icon
 import { Twitter, Instagram, Youtube, Globe, Zap, Mic } from 'lucide-react';
+import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 
 const brandRed = '#C72C4F';
 const brandYellow = '#FFEA4F';
@@ -63,70 +64,68 @@ const AboutSection = () => {
             const factTextColor = host.accentTextColor;
 
             return (
-              <div
-                key={host.name}
-                style={{ backgroundColor: host.bgColor }}
-                // Added overflow-hidden here
-                className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transform hover:scale-[1.03] transition-transform duration-300 ${host.textColor}`}
-              >
-                {/* Image Container - Takes significant width on MD+ screens */}
-                {/* Ensure image path is correct and image file exists */}
-                <div className="md:w-2/5 flex-shrink-0">
-                   {/* Image fills container width, height adjusts (or use aspect-ratio) */}
-                   {/* Removed border, check if image styling is correct */}
-                  <img
-                    src={host.image}
-                    alt={`${host.name} caricature`}
-                    // Ensure image covers the area, adjust height/aspect ratio as needed
-                    className="w-full h-full object-cover"
-                    // You might need min-height or aspect-ratio utilities depending on images
-                    // e.g., className="w-full h-full object-cover aspect-square"
-                  />
-                </div>
+              <CardContainer key={host.name} className="inter-var">
+                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+                  <CardItem translateZ="20">
+                    <div
+                      key={host.name}
+                      style={{ backgroundColor: host.bgColor }}
+                      className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transform hover:scale-[1.03] transition-transform duration-300 ${host.textColor}`}
+                    >
+                      {/* Image Container - Takes significant width on MD+ screens */}
+                      {/* Ensure image path is correct and image file exists */}
+                      <div className="md:w-2/5 flex-shrink-0">
+                        {/* Image fills container width, height adjusts (or use aspect-ratio) */}
+                        {/* Removed border, check if image styling is correct */}
+                        <img
+                          src={host.image}
+                          alt={`${host.name} caricature`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-                {/* Text Content Container */}
-                <div className="md:w-3/5 p-6 flex flex-col"> {/* Added flex flex-col */}
-                  {/* Name */}
-                  <h3 className="text-3xl font-bold mb-3">{host.name}</h3>
+                      {/* Text Content Container */}
+                      <div className="md:w-3/5 p-6 flex flex-col">
+                        {/* Name */}
+                        <h3 className="text-3xl font-bold mb-3">{host.name}</h3>
 
-                  {/* Bio */}
-                  <p className="text-base opacity-90 mb-5">{host.bio}</p>
+                        {/* Bio */}
+                        <p className="text-base opacity-90 mb-5">{host.bio}</p>
 
-                  {/* Social Links */}
-                  <div className="mb-5">
-                    <h4 className="font-semibold mb-2 opacity-80 text-sm uppercase tracking-wider">Connect</h4>
-                    <div className="flex space-x-4 items-center">
-                      {host.socials.map(social => (
-                        <a
-                          key={social.platform}
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${host.name} on ${social.platform}`}
-                          className={`transition-opacity ${iconColorClass}`}
+                        {/* Social Links */}
+                        <div className="mb-5">
+                          <h4 className="font-semibold mb-2 opacity-80 text-sm uppercase tracking-wider">Connect</h4>
+                          <div className="flex space-x-4 items-center">
+                            {host.socials.map((social) => (
+                              <a
+                                key={social.platform}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${host.name} on ${social.platform}`}
+                                className={`transition-opacity ${iconColorClass}`}
+                              >
+                                <social.icon className="w-6 h-6" />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Quirky Fact / Easter Egg - Using Zap icon */}
+                        <div
+                          style={{ backgroundColor: factBgColor }}
+                          className={`mt-auto p-4 rounded-lg ${factTextColor} text-sm`}
                         >
-                          <social.icon className="w-6 h-6" />
-                        </a>
-                      ))}
+                          <div className="flex items-start gap-2">
+                            <Zap className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                            <p><strong className="font-semibold">Host Secret:</strong> {host.quirkyFact}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Quirky Fact / Easter Egg - Using Zap icon */}
-                  {/* Added mt-auto to push to bottom */}
-                  <div
-                    style={{ backgroundColor: factBgColor }}
-                    className={`mt-auto p-4 rounded-lg ${factTextColor} text-sm`}
-                  >
-                     <div className="flex items-start gap-2">
-                       {/* Changed icon to Zap */}
-                       <Zap className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                       {/* Changed wording */}
-                       <p><strong className="font-semibold">Host Secret:</strong> {host.quirkyFact}</p>
-                     </div>
-                  </div>
-
-                </div> {/* End Text Content Container */}
-              </div> // End Card
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
             );
           })}
         </div>
