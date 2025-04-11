@@ -1,4 +1,3 @@
-\
 import React from 'react';
 import {
   Dialog,
@@ -23,7 +22,14 @@ const EpisodePlayer: React.FC<EpisodePlayerProps> = ({ videoId, isOpen, onClose,
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Added autoplay
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+    <Dialog 
+      open={isOpen} 
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose();
+        }
+      }}
+    >
       <DialogContent className="max-w-3xl p-0">
         {/* Optional Header */}
         {/* <DialogHeader className="p-4 pb-0">

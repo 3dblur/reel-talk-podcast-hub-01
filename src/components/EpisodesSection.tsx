@@ -1,4 +1,3 @@
-\
 import React, { useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
 import { Button } from './ui/button'; // Assuming Button component for interaction
