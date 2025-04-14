@@ -1,8 +1,12 @@
+"use client";
 import { Headphones, ArrowRight, Play, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
+import { Pointer } from "@/components/magicui/pointer"; // Corrected path
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 
 const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -28,7 +32,14 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#cd0644]">
+    // The section is the parent element for the Pointer
+    <section id="hero" className="relative min-h-screen overflow-hidden bg-[#cd0644]">
+      {/* Pointer component placed inside the section */}
+      <Pointer>
+        {/* Custom pointer: FontAwesome icon */}
+        <FontAwesomeIcon icon={faMicrophone} className="text-pulp-yellow text-2xl" />
+      </Pointer>
+
       {/* Pixel grid background */}
       <div
         className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 z-0"
@@ -54,16 +65,14 @@ const HeroSection = () => {
               </span>
             </div>
 
-            <h1
-              className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-pulp-yellow pixel-text"
-              style={{
-                fontFamily: "'VT323', monospace",
-              }}
-            >
-              JUMP
-              <br />
-              KITCHEN
-            </h1>
+            {/* Replace H1 text with Logo Image */}
+            <div className="overflow-hidden">
+              <img
+                src="/lovable-uploads/12.png"
+                alt="Jump Kitchen Logo"
+                className="h-40 w-auto mb-0 object-cover color-blue"
+               />
+            </div>
 
             <p
               className="text-3xl sm:text-4xl font-light text-white mb-4 tracking-wide pixel-text-subtitle"
@@ -100,11 +109,11 @@ const HeroSection = () => {
 
             <div className="grid grid-cols-2 gap-6 mt-6 w-full max-w-md">
               <div className="pixel-stat">
-                <p className="text-4xl font-bold text-pulp-yellow font-pixel">150+</p>
+                <p className="text-4xl font-bold text-pulp-yellow font-pixel">175+</p>
                 <p className="text-sm text-white/70 font-pixel">EPISODES</p>
               </div>
               <div className="pixel-stat">
-                <p className="text-4xl font-bold text-pulp-yellow font-pixel">320K</p>
+                <p className="text-4xl font-bold text-pulp-yellow font-pixel">450K+</p>
                 <p className="text-sm text-white/70 font-pixel">MONTHLY LISTENERS</p>
               </div>
             </div>
@@ -125,7 +134,7 @@ const HeroSection = () => {
 
       {/* Pixelated border bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-8 bg-repeat-x bg-pixelated-border z-20"></div>
-    </div>
+    </section>
   );
 };
 

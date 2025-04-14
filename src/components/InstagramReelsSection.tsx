@@ -1,157 +1,165 @@
 import React, { useState } from 'react';
-import { Instagram, Play, Heart, MessageCircle, X } from 'lucide-react';
+import { Instagram, PlayCircle } from 'lucide-react';
+import { Pointer } from "@/components/magicui/pointer"; // Import the Pointer component
 
-interface ReelProps {
-  id: string;
-  title: string;
-  thumbnail: string;
-  videoUrl: string;
-  embedUrl: string;
-  likes: number;
-  comments: number;
-}
+// Updated Reel Data - *** ADD ACTUAL THUMBNAIL URLS ***
+const reels = [
+  {
+    id: 'DEiHWXXsHW6',
+    title: 'Stressful Travel?', // Example Title
+    embedUrl: 'https://www.instagram.com/reel/DEiHWXXsHW6/embed',
+    reelUrl: 'https://www.instagram.com/reel/DEiHWXXsHW6/',
+    thumbnailUrl: '/lovable-uploads/reel1.jpg' // REPLACE with actual thumbnail URL
+  },
+  {
+    id: 'DHllnoNsoWg',
+    title: 'Reel Title 2',
+    embedUrl: 'https://www.instagram.com/reel/DHllnoNsoWg/embed',
+    reelUrl: 'https://www.instagram.com/reel/DHllnoNsoWg/',
+    thumbnailUrl: '/lovable-uploads/reel2.jpg' // REPLACE
+  },
+  {
+    id: 'CvxnzscAkLZ',
+    title: 'Reel Title 3',
+    embedUrl: 'https://www.instagram.com/reel/CvxnzscAkLZ/embed',
+    reelUrl: 'https://www.instagram.com/reel/CvxnzscAkLZ/',
+    thumbnailUrl: '/lovable-uploads/reel3.jpg' // REPLACE
+  },
+  {
+    id: 'C-krkbls3FW',
+    title: 'Reel Title 4',
+    embedUrl: 'https://www.instagram.com/reel/C-krkbls3FW/embed',
+    reelUrl: 'https://www.instagram.com/reel/C-krkbls3FW/',
+    thumbnailUrl: '/lovable-uploads/reel4.jpg' // REPLACE
+  },
+];
 
 const InstagramReelsSection = () => {
-  const [activeReel, setActiveReel] = useState<string | null>(null);
+  const [visibleReelId, setVisibleReelId] = useState<string | null>(null);
 
-  const reels: ReelProps[] = [
-    {
-      id: "reel1",
-      title: "Check out this awesome reel",
-      thumbnail: "/api/placeholder/400/720",
-      videoUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      embedUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/embed/",
-      likes: 1248,
-      comments: 87
-    },
-    {
-      id: "reel2",
-      title: "Check out this awesome reel",
-      thumbnail: "/api/placeholder/400/720",
-      videoUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      embedUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/embed/",
-      likes: 952,
-      comments: 65
-    },
-    {
-      id: "reel3",
-      title: "Check out this awesome reel",
-      thumbnail: "/api/placeholder/400/720",
-      videoUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      embedUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/embed/",
-      likes: 1563,
-      comments: 112
-    },
-    {
-      id: "reel4",
-      title: "Check out this awesome reel",
-      thumbnail: "/api/placeholder/400/720",
-      videoUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      embedUrl: "https://www.instagram.com/reel/DEiHWXXsHW6/embed/",
-      likes: 845,
-      comments: 73
-    }
-  ];
-
-  const handlePlayReel = (id: string) => {
-    setActiveReel(id);
-  };
-
-  const handleCloseReel = () => {
-    setActiveReel(null);
+  const handlePlayClick = (reelId: string) => {
+    setVisibleReelId(reelId);
   };
 
   return (
-    <section id="reels" className="py-20 relative overflow-hidden bg-pulp-yellow">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center mb-12">
-          <div className="flex items-center mb-4">
-            <Instagram className="w-8 h-8 mr-3 text-purple-500 bg-transparent" />
-            <h2 className="text-4xl font-pixel text-pulp-pink md:text-6xl">
-              <span className="text-pulp-pink">@</span>pulpkitchen
-            </h2>
-          </div>
-          <p className="text-lg text-center max-w-2xl font-pixel text-pulp-black md:text-2xl">
-            Quick takes, hot debates, and behind-the-scenes moments from your favorite film enthusiasts.
-          </p>
-        </div>
+    <section id="reels" className="py-20 relative overflow-hidden bg-[#FDE300] font-pixel">
+      {/* Pointer component placed inside the section */}
+      <Pointer>
+         {/* Custom pointer: Clapper board emoji */}
+        <span className="text-2xl">🎬</span>
+      </Pointer>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Inject CSS to attempt hiding default Instagram embed UI */}
+      <style>
+        {`
+          .instagram-reel-iframe {
+            border-radius: inherit !important; /* Inherit parent rounding */
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            min-height: 0 !important;
+            border: none !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+          }
+          /* Add more specific CSS rules here if needed */
+          .instagram-reel-iframe .EmbedHeader, 
+          .instagram-reel-iframe .Footer,
+          .instagram-reel-iframe [class*="EmbedHeader"], 
+          .instagram-reel-iframe [class*="Footer"], 
+          .instagram-reel-iframe [class*="ProfilePhoto"], 
+          .instagram-reel-iframe [class*="Username"], 
+          .instagram-reel-iframe [class*="FollowButton"], 
+          .instagram-reel-iframe [class*="ViewProfileButton"] {
+            display: none !important;
+          }
+        `}
+      </style>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-pulp-red mb-12">
+          OUR LATEST REELS
+        </h2>
+
+        {/* Reels Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {reels.map(reel => (
-            <div 
-              key={reel.id} 
-              className="group relative block overflow-hidden rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg bg-black/30 border border-purple-500/20"
+            <div
+              key={reel.id}
+              // Card container: aspect ratio, themed border, background (for fallback)
+              className="relative group aspect-[9/16] overflow-hidden rounded-xl transition-all duration-300 shadow-lg bg-black/10 border-4 border-pulp-red"
+              style={{ borderColor: '#000000' }}
             >
-              <div className="aspect-[9/16] w-full relative">
-                <img 
-                  src={reel.thumbnail} 
-                  alt={reel.title} 
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
+              {visibleReelId === reel.id ? (
+                // -- IFRAME VISIBLE --
+                <iframe
+                  src={`${reel.embedUrl}?autoplay=1`} // Attempt autoplay
+                  className="instagram-reel-iframe"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowTransparency
+                  allow="autoplay"
+                  title={reel.title}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/0 flex items-end p-4">
-                  <div>
-                    <p className="text-sm text-purple-400 mb-1 font-pixel">@pulpkitchen</p>
-                    <h3 className="text-lg font-medium text-white font-pixel">{reel.title}</h3>
-                  </div>
-                </div>
+              ) : (
+                // -- THUMBNAIL VISIBLE --
                 <button
-                  onClick={() => handlePlayReel(reel.id)}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full p-4 bg-pulp-pink opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => handlePlayClick(reel.id)}
+                  className="absolute inset-0 w-full h-full p-0 border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-pulp-yellow focus:ring-offset-2 focus:ring-offset-pulp-red rounded-lg"
+                  aria-label={`Play Reel: ${reel.title}`}
                 >
-                  <Play className="h-8 w-8 text-white" fill="white" />
+                  {/* Background Image */}
+                  <img
+                    src={reel.thumbnailUrl} // Use the thumbnail URL
+                    alt={`Thumbnail for ${reel.title}`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* Dark Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                  {/* Play Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <PlayCircle className="h-16 w-16 text-pulp-yellow drop-shadow-lg transition-transform duration-300 group-hover:scale-110" style={{ color: '#FDE300' }} />
+                  </div>
+                  {/* Title at Bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <p className="text-white text-sm font-semibold truncate text-shadow">
+                      {reel.title}
+                    </p>
+                  </div>
+                  {/* Instagram Icon (optional link) */}
+                  <a
+                    href={reel.reelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View on Instagram"
+                    onClick={(e) => e.stopPropagation()} // Prevent triggering play click
+                    className="absolute top-2 right-2 z-10 p-1.5 bg-pulp-red text-pulp-yellow rounded-full hover:bg-pulp-red/80 transition-colors shadow-md"
+                    style={{ backgroundColor: '#CD0744', color: '#FDE300' }}
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
                 </button>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-2 flex justify-between items-center">
-                  <div className="flex items-center">
-                    <Heart className="h-4 w-4 text-white mr-1" />
-                    <span className="text-white text-xs">{reel.likes}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MessageCircle className="h-4 w-4 text-white mr-1" />
-                    <span className="text-white text-xs">{reel.comments}</span>
-                  </div>
-                </div>
-                <div className="absolute top-4 right-4 rounded-full p-2 shadow-lg bg-pulp-pink">
-                  <Instagram className="h-5 w-5 text-white" />
-                </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <a 
-            href="https://www.instagram.com/pulpkitchen" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center px-6 py-3 rounded-full bg-purple-500 text-white font-medium hover:bg-purple-600 transition-colors font-pixel"
+        {/* Follow CTA */}
+        <div className="mt-16 text-center">
+          <a
+            href="https://www.instagram.com/pulpkitchenpodcast"
+            target="_blank"
+            rel="noopener noreferrer"
+            // Style like HeroSection Subscribe button
+            className="inline-flex items-center px-8 py-4 rounded-full border-2 border-pulp-red text-pulp-red font-medium hover:bg-pulp-red/10 transition-all duration-300 transform hover:scale-105"
           >
             <Instagram className="mr-2 h-5 w-5" />
-            Follow @pulpkitchen on Instagram
+            Follow @pulpkitchenpodcast
           </a>
         </div>
       </div>
-
-      {/* Video Modal */}
-      {activeReel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-          <div className="relative w-full max-w-lg md:max-w-2xl lg:max-w-4xl">
-            <button 
-              onClick={handleCloseReel} 
-              className="absolute -top-12 right-0 p-2 text-white bg-pulp-pink rounded-full hover:bg-pulp-pink/80 transition-colors"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <div className="aspect-[9/16] w-full bg-black rounded-xl overflow-hidden">
-              <iframe
-                src={reels.find(reel => reel.id === activeReel)?.embedUrl}
-                className="w-full h-full"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

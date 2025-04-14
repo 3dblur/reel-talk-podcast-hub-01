@@ -1,10 +1,9 @@
- 
+"use client";
 import React, { useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
 import { Button } from './ui/button'; // Assuming Button component for interaction
-// Remove unused Card imports if no longer needed
-// import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card'; // Import the 3D card components
+import { Pointer } from "@/components/magicui/pointer"; // Import the Pointer component
 
 // Define the structure for an episode
 interface Episode {
@@ -50,9 +49,15 @@ const EpisodesSection: React.FC = () => {
   };
 
   return (
-    <section id="episodes" className="py-12 md:py-20 bg-secondary">
+    <section id="episodes" className="py-12 md:py-20 bg-secondary relative">
+      {/* Pointer component placed inside the section */}
+      <Pointer>
+        {/* Custom pointer: Popcorn emoji */}
+        <span className="text-2xl">🍿</span>
+      </Pointer>
+
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">Episodes</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-8 md:mb-12">Episodes</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {episodes.map((episode) => (
             // Wrap each card with CardContainer

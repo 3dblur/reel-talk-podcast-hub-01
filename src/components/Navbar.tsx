@@ -29,16 +29,9 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="flex items-center gap-2">
-              <Film className="h-7 w-7 text-pulp-yellow" />
-              <span
-                className="text-xl font-bold tracking-tight text-pulp-yellow pixel-text-subtitle"
-                style={{
-                  fontFamily: "'VT323', monospace",
-                }}
-              >
-                PULP KITCHEN
-              </span>
+            {/* Replace Text Logo with Image Logo */}
+            <a href="/" className="h-40 w-auto flex items-center gap-2" >
+              <img src="/lovable-uploads/12.png" alt="Jump Kitchen Logo" className="h-10 w-auto" />
             </a>
           </div>
           <div className="hidden md:block">

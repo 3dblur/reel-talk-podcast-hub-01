@@ -2,6 +2,7 @@ import React from 'react';
 // Added Zap icon
 import { Twitter, Instagram, Youtube, Globe, Zap, Mic } from 'lucide-react';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
+import { Pointer } from "@/components/magicui/pointer"; // Import the Pointer component
 
 const brandRed = '#C72C4F';
 const brandYellow = '#FFEA4F';
@@ -44,7 +45,13 @@ const hosts = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-gray-100">
+    <section id="about" className="py-16 md:py-24 bg-gray-100 relative">
+      {/* Pointer component placed inside the section */}
+      <Pointer>
+        {/* Custom pointer: Chef emoji */}
+        <span className="text-2xl">👨‍🍳</span>
+      </Pointer>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <h2 style={{ color: brandRed }} className="text-3xl md:text-4xl font-bold mb-4">
