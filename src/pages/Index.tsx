@@ -5,7 +5,6 @@ import HeroSection from '../components/HeroSection';
 import EpisodesSection from '../components/EpisodesSection';
 import AboutSection from '../components/AboutSection';
 import InstagramReelsSection from '../components/InstagramReelsSection';
-import TopicsSection from '../components/TopicsSection';
 import NewsletterSection from '../components/NewsletterSection';
 import Footer from '../components/Footer';
 
@@ -17,7 +16,6 @@ const Index = () => {
       <EpisodesSection />
       <AboutSection />
       <InstagramReelsSection />
-      <TopicsSection />
       <NewsletterSection />
       <Footer />
     </div>

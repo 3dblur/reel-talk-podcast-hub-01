@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Film, Play } from 'lucide-react';
+import { Menu, X, Play } from 'lucide-react'; // Removed Film icon as it wasn't used
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
@@ -22,47 +22,48 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-transparent backdrop-blur-md bg-white/10 border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+          ? 'bg-tj-secondary/90 backdrop-blur-md border-b border-tj-primary/50 shadow-lg' // Updated background, border, shadow
           : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20"> {/* Increased height slightly for logo */}
           <div className="flex items-center">
-            {/* Replace Text Logo with Image Logo */}
-            <a href="/" className="h-40 w-auto flex items-center gap-2" >
-              <img src="/lovable-uploads/12.png" alt="Jump Kitchen Logo" className="h-10 w-auto" />
+            {/* Use the provided logo */}
+            <a href="/" className="flex items-center gap-2">
+              <img src="/lovable-uploads/img2.png" alt="Tech Jobber Podcast Logo" className="h-12 w-auto" /> {/* Updated logo path and alt text, adjusted height */}
             </a>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
+              {/* Updated Nav Links */}
               <a
                 href="#episodes"
-                className="text-white hover:text-pulp-yellow px-3 py-2 rounded-md text-base font-medium font-pixel"
+                className="text-tj-text-main hover:text-tj-primary px-3 py-2 rounded-md text-sm font-medium font-body-sans uppercase tracking-wider" // Updated styles
               >
                 EPISODES
               </a>
               <a
                 href="#about"
-                className="text-white hover:text-pulp-yellow px-3 py-2 rounded-md text-base font-medium font-pixel"
+                className="text-tj-text-main hover:text-tj-primary px-3 py-2 rounded-md text-sm font-medium font-body-sans uppercase tracking-wider" // Updated styles
               >
                 ABOUT
               </a>
               <a
                 href="#reels"
-                className="text-white hover:text-pulp-yellow px-3 py-2 rounded-md text-base font-medium font-pixel"
+                className="text-tj-text-main hover:text-tj-primary px-3 py-2 rounded-md text-sm font-medium font-body-sans uppercase tracking-wider" // Updated styles
               >
-                @PULPKITCHEN
+                SOCIALS {/* Changed text to be more generic */}
               </a>
               <a
                 href="#topics"
-                className="text-white hover:text-pulp-yellow px-3 py-2 rounded-md text-base font-medium font-pixel"
+                className="text-tj-text-main hover:text-tj-primary px-3 py-2 rounded-md text-sm font-medium font-body-sans uppercase tracking-wider" // Updated styles
               >
                 TOPICS
               </a>
               <Button
                 size="sm"
-                className="ml-4 bg-pulp-yellow text-pulp-black hover:bg-pulp-yellow/90 font-pixel pixel-button"
+                className="ml-4 bg-tj-primary text-tj-text-main hover:bg-opacity-90 font-body-sans uppercase font-bold text-sm tracking-wider" // Updated button styles
               >
                 <Play className="mr-2 h-4 w-4" /> LISTEN NOW
               </Button>
@@ -73,7 +74,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-pulp-yellow"
+              className="text-tj-primary hover:bg-tj-primary/10" // Updated mobile menu icon color
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -83,38 +84,38 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-pulp-red border-b border-pulp-yellow/20">
+        <div className="md:hidden bg-tj-secondary border-b border-tj-primary/50"> {/* Updated mobile menu background and border */}
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
               href="#episodes"
-              className="text-white hover:text-pulp-yellow block px-3 py-2 rounded-md text-base font-medium font-pixel"
+              className="text-tj-text-main hover:text-tj-primary block px-3 py-2 rounded-md text-base font-medium font-body-sans uppercase tracking-wider" // Updated styles
               onClick={() => setIsMenuOpen(false)}
             >
               EPISODES
             </a>
             <a
               href="#about"
-              className="text-white hover:text-pulp-yellow block px-3 py-2 rounded-md text-base font-medium font-pixel"
+              className="text-tj-text-main hover:text-tj-primary block px-3 py-2 rounded-md text-base font-medium font-body-sans uppercase tracking-wider" // Updated styles
               onClick={() => setIsMenuOpen(false)}
             >
               ABOUT
             </a>
             <a
               href="#reels"
-              className="text-white hover:text-pulp-yellow block px-3 py-2 rounded-md text-base font-medium font-pixel"
+              className="text-tj-text-main hover:text-tj-primary block px-3 py-2 rounded-md text-base font-medium font-body-sans uppercase tracking-wider" // Updated styles
               onClick={() => setIsMenuOpen(false)}
             >
-              @PULPKITCHEN
+              SOCIALS {/* Changed text to be more generic */}
             </a>
             <a
               href="#topics"
-              className="text-white hover:text-pulp-yellow block px-3 py-2 rounded-md text-base font-medium font-pixel"
+              className="text-tj-text-main hover:text-tj-primary block px-3 py-2 rounded-md text-base font-medium font-body-sans uppercase tracking-wider" // Updated styles
               onClick={() => setIsMenuOpen(false)}
             >
               TOPICS
             </a>
-            <div className="pt-2">
-              <Button className="w-full bg-pulp-yellow text-pulp-black hover:bg-pulp-yellow/90 font-pixel pixel-button">
+            <div className="pt-2 px-1"> {/* Added padding for button */}
+              <Button className="w-full bg-tj-primary text-tj-text-main hover:bg-opacity-90 font-body-sans uppercase font-bold text-sm tracking-wider"> {/* Updated button styles */}
                 <Play className="mr-2 h-4 w-4" /> LISTEN NOW
               </Button>
             </div>

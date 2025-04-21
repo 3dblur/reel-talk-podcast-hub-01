@@ -3,38 +3,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Slab Serif font */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@400;500;700;900&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* Base colors defined using HSL values for shadcn compatibility */
+    /* Primary: #e94f3b -> hsl(6, 81%, 60%) */
+    --primary: 6 81% 60%;
+    --primary-foreground: 0 0% 100%; /* white */
 
-    --card: 340 10% 10%;
-    --card-foreground: 0 0% 100%;
+    /* Secondary: #000000 -> hsl(0, 0%, 0%) */
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 100%; /* white */
 
-    --popover: 340 10% 8%;
-    --popover-foreground: 0 0% 100%;
+    /* Accent: #56e5b0 -> hsl(158, 74%, 62%) */
+    --accent: 158 74% 62%;
+    --accent-foreground: 0 0% 0%; /* black */
 
-    --primary: 338 91% 62%;
-    --primary-foreground: 0 0% 100%;
+    /* Background: #ffe5e0 -> hsl(11, 100%, 94%) */
+    --background: 11 100% 94%;
+    --foreground: 0 0% 0%; /* black (for default text on background) */
 
-    --secondary: 50 100% 50%;
-    --secondary-foreground: 0 0% 0%;
+    /* Text colors (less common to put in HSL root, but for completeness) */
+    /* Main Text: #ffffff -> hsl(0, 0%, 100%) */
+    /* Subtext: #000000 -> hsl(0, 0%, 0%) */
 
-    --muted: 340 10% 15%;
-    --muted-foreground: 215 20% 75%;
+    /* Other shadcn vars, derived or kept default */
+    /* Using secondary (black) for card background */
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%; /* white text on black card */
 
-    --accent: 50 100% 50%;
-    --accent-foreground: 0 0% 0%;
+    /* Using secondary (black) slightly lighter for popover */
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%; /* white text */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Muted can be a lighter shade of background or grey */
+    --muted: 11 50% 96%; /* Lighter version of #ffe5e0 */
+    --muted-foreground: 0 0% 40%; /* Dark grey */
 
-    --border: 340 10% 20%;
-    --input: 340 10% 20%;
-    --ring: 338 91% 62%;
+    /* Destructive usually red */
+    --destructive: 0 84% 60%; /* Default red */
+    --destructive-foreground: 0 0% 100%; /* white */
+
+    /* Border can be a slightly darker background or light grey */
+    --border: 11 50% 90%; /* Darker version of #ffe5e0 */
+    --input: 11 50% 88%; /* Slightly darker border for input */
+    --ring: 6 81% 60%; /* Primary color for focus rings */
 
     --radius: 0.5rem;
   }
+
+  /* You might want a dark mode override if needed */
+  /* .dark { ... } */
 }
 
 @layer base {
@@ -43,128 +64,66 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'VT323', monospace;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'VT323', monospace;
+    /* Use tj-background for body */
+    @apply bg-tj-background text-tj-text-subtext antialiased;
+    /* Apply body font from config */
+    font-family: theme('fontFamily.body-sans');
+    /* Default text color on light background is black */
+    color: theme('colors.tj-text-subtext');
   }
 
-  /* Add custom font for pixel text */
-  @font-face {
-    font-family: 'VT323';
-    src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-    font-display: swap;
+  /* Apply title font from config */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.title-slab');
+    /* Titles likely use main text color or specific overrides */
   }
 }
 
+/* Component layer for reusable styles based on the new theme */
 @layer components {
-  .pixel-text {
-    text-shadow: 6px 6px 0px theme('colors.black');
-    letter-spacing: 0.05em;
-    text-rendering: optimizeLegibility;
-    line-height: 0.9;
+  .podcast-title {
+    @apply font-title-slab font-black uppercase tracking-wider text-tj-text-main text-shadow shadow-tj-secondary;
+    /* Example: White text with black outline */
   }
-  
-  .pixel-text-subtitle {
-    text-shadow: 4px 4px 0px theme('colors.black');
-    letter-spacing: 0.05em;
+
+  .podcast-tagline {
+    @apply font-body-sans font-medium uppercase text-tj-text-main;
+     /* Example: White text */
   }
-  
-  .pixel-button {
-    position: relative;
-    box-shadow: 4px 4px 0px theme('colors.black');
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+
+  .section-heading {
+     @apply font-title-slab font-black uppercase tracking-wider text-tj-primary mb-4;
+     /* Example: Primary color for section titles */
   }
-  
-  .pixel-button:active {
-    box-shadow: 2px 2px 0px theme('colors.black');
-    transform: translate(2px, 2px);
-  }
-  
-  .pixel-stat {
-    @apply p-4 border-2 border-white/20 bg-black/30 rounded-md backdrop-blur-sm;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
-    transition: all 0.2s ease;
-  }
-  
-  .pixel-stat:hover {
-    @apply border-pulp-yellow/40 bg-black/40;
-    transform: translateY(-3px);
-  }
-  
-  .pixel-card {
-    @apply border-2 border-white/20 bg-black/30 rounded-md backdrop-blur-sm p-4;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
-    transition: all 0.2s ease;
-  }
-  
-  .pixel-card:hover {
-    @apply border-pulp-yellow/40;
-    transform: translateY(-2px);
-  }
-  
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-4 text-pulp-yellow;
-    text-shadow: 4px 4px 0px theme('colors.black');
-    letter-spacing: 0.05em;
-    text-rendering: optimizeLegibility;
-    font-family: 'VT323', monospace;
-  }
-  
-  .section-subtitle {
-    @apply text-xl md:text-2xl mb-2 text-white;
-    text-shadow: 2px 2px 0px theme('colors.black');
-    letter-spacing: 0.03em;
-    font-family: 'VT323', monospace;
-  }
+
+   .host-name {
+    @apply font-body-sans font-bold uppercase text-tj-text-subtext;
+    /* Example: Black text */
+   }
+
+   .cta-text {
+    @apply font-cta-sans font-light uppercase tracking-widest text-tj-text-subtext text-sm; /* Example: Black text, small caps handled via uppercase + font choice/styling */
+   }
+
+   .primary-button {
+      @apply bg-tj-primary text-tj-text-main font-body-sans font-bold uppercase px-6 py-3 rounded hover:bg-opacity-90 transition-colors;
+      /* Add potential outline/shadow if needed */
+   }
+
+    .secondary-button {
+      @apply bg-tj-secondary text-tj-text-main font-body-sans font-bold uppercase px-6 py-3 rounded hover:bg-opacity-90 transition-colors;
+      /* Add potential outline/shadow if needed */
+   }
+
+   .accent-button {
+     @apply bg-tj-accent text-tj-text-subtext font-body-sans font-bold uppercase px-6 py-3 rounded hover:bg-opacity-90 transition-colors;
+      /* Add potential outline/shadow if needed */
+   }
 }
 
 @layer utilities {
-  .film-grain {
-    @apply relative;
+  .text-outline-black {
+     @apply text-shadow shadow-black;
   }
-  
-  .film-grain::after {
-    content: "";
-    @apply absolute inset-0 bg-grain opacity-10 pointer-events-none mix-blend-overlay;
-  }
-  
-  .text-gradient {
-    @apply bg-gradient-to-r from-pulp-pink to-pulp-yellow bg-clip-text text-transparent;
-  }
-  
-  .retro-shadow {
-    text-shadow: 3px 3px 0px theme('colors.pulp.yellow');
-  }
-  
-  .bg-pixelated-border {
-    background-image: url("data:image/svg+xml,%3Csvg width='16' height='8' viewBox='0 0 16 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H4V4H0V0Z' fill='%23000000'/%3E%3Cpath d='M4 4H8V8H4V4Z' fill='%23000000'/%3E%3Cpath d='M8 0H12V4H8V0Z' fill='%23000000'/%3E%3Cpath d='M12 4H16V8H12V4Z' fill='%23000000'/%3E%3C/svg%3E");
-    background-size: 16px 8px;
-  }
-  
-  .animate-float-slow {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
-  
-  .font-pixel {
-    font-family: 'VT323', monospace;
-    letter-spacing: 0.05em;
-  }
+   /* Add other utilities if needed */
 }

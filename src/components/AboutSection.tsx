@@ -1,140 +1,104 @@
 import React from 'react';
-// Added Zap icon
-import { Twitter, Instagram, Youtube, Globe, Zap, Mic } from 'lucide-react';
-import { CardContainer, CardBody, CardItem } from './ui/3d-card';
-import { Pointer } from "@/components/magicui/pointer"; // Import the Pointer component
+// Import relevant icons based on JSON
+import { Linkedin, Instagram, Facebook, Twitter, Youtube, Rss } from 'lucide-react'; // Added common podcast/social icons
+import { Card } from '@/components/ui/card'; // Using standard Card for simplicity
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // For host image
 
-const brandRed = '#C72C4F';
-const brandYellow = '#FFEA4F';
-
-const hosts = [
-  {
-    name: "George",
-    role: "Co-Host",
-    image: "/lovable-uploads/img1.png", // Replace with actual path
-    bio: "The thoughtful film buff. George brings warm, inquisitive, and slightly cheeky commentary.", // Shortened for space if needed
-    socials: [
-      { platform: 'Twitter', url: '#', icon: Twitter },
-      { platform: 'Instagram', url: '#', icon: Instagram },
-      { platform: 'Website', url: '#', icon: Globe },
-    ],
-    // NEW Quirky Fact
-    quirkyFact: "Has successfully negotiated peace treaties between warring factions of garden gnomes in three separate dimensions.",
-    bgColor: brandRed,
-    textColor: 'text-white',
-    accentColor: brandYellow,
-    accentTextColor: 'text-gray-900'
+// Host details based on JSON
+const host = {
+  name: "Chris Schwenk",
+  title: "Tech Recruitment Expert, Host",
+  image: "/lovable-uploads/chris-schwenk-placeholder.png", // *** REPLACE with actual path to Chris Schwenk's photo ***
+  bio: "Chris brings years of tech recruitment expertise to the mic, interviewing the leading figures and uncovering the stories behind the tech industry's biggest successes. Passionate about connecting talent with opportunity.",
+  associatedCompany: {
+    name: "Delos Staffing",
+    slogan: "Connecting businesses with the best IT professionals",
+    logo: "/lovable-uploads/delos-logo-placeholder.png" // *** REPLACE with actual path to Delos Staffing logo ***
   },
-  {
-    name: "James",
-    role: "Co-Host",
-    image: "/lovable-uploads/img2.png", // Replace with actual path
-    bio: "The energetic cinephile. James' style is witty, playful, and engaging, often leading games.", // Shortened
-    socials: [
-      { platform: 'Twitter', url: '#', icon: Twitter },
-      { platform: 'Youtube', url: '#', icon: Youtube },
-    ],
-    // NEW Quirky Fact
-    quirkyFact: "Claims his cat provides all his best movie review insights via elaborately coded meows.",
-    bgColor: brandYellow,
-    textColor: 'text-gray-900',
-    accentColor: brandRed,
-    accentTextColor: 'text-white'
-  }
-];
+  socials: [
+    // Map social icons from JSON - using Lucide icons here
+    { platform: 'LinkedIn', url: '#', Icon: Linkedin }, // Replace '#' with actual URLs
+    { platform: 'Instagram', url: '#', Icon: Instagram },
+    { platform: 'Facebook', url: '#', Icon: Facebook },
+    // { platform: 'TikTok', url: '#', Icon: TikTok }, // No direct Lucide icon for TikTok
+    { platform: 'Spotify', url: '#', Icon: Rss }, // Using RSS icon as placeholder for Spotify/Podcast feed
+    { platform: 'X (Twitter)', url: '#', Icon: Twitter },
+    { platform: 'YouTube', url: '#', Icon: Youtube }, // Added YouTube if applicable
+  ],
+};
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-gray-100 relative">
-      {/* Pointer component placed inside the section */}
-      <Pointer>
-        {/* Custom pointer: Chef emoji */}
-        <span className="text-2xl">👨‍🍳</span>
-      </Pointer>
+    <section id="about" className="py-16 md:py-24 bg-tj-background text-tj-text-subtext">
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 style={{ color: brandRed }} className="text-3xl md:text-4xl font-bold mb-4">
-            MEET YOUR HOSTS
+          <h2 className="section-heading text-tj-primary mb-4">
+            Meet Your Host
           </h2>
-          <p className="text-lg text-gray-600">
-            The dynamic British duo bringing you weekly episodes packed with film reviews, industry news,
-            trivia games, and celebrity interviews.
+          <p className="text-lg font-body-sans text-tj-text-subtext/80">
+            The driving force behind the Tech Jobber Podcast, bringing you insights from the tech industry champions.
           </p>
         </div>
 
-        {/* Changed max-width to allow cards to be slightly wider */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {hosts.map((host) => {
-            const iconColorClass = host.textColor === 'text-white' ? 'text-white hover:text-opacity-80' : 'text-gray-700 hover:text-black';
-            const factBgColor = host.accentColor;
-            const factTextColor = host.accentTextColor;
+        {/* Centered card for single host */} 
+        <div className="max-w-4xl mx-auto">
+          {/* Card reverted to: tj-secondary background, tj-text-main, tj-primary border */} 
+          <Card className="bg-tj-secondary text-tj-text-main border border-tj-primary/30 shadow-xl overflow-hidden rounded-lg">
+            <div className="md:flex">
+              {/* Host Image Area: Gradient background with primary/accent */}
+              <div className="md:w-1/3 bg-gradient-to-br from-tj-primary/80 to-tj-accent/60 flex items-center justify-center p-6 md:p-8">
+                <Avatar className="w-40 h-40 md:w-48 md:h-48 border-4 border-tj-text-main shadow-lg">
+                  <AvatarImage src={host.image} alt={host.name} />
+                  <AvatarFallback className="text-tj-secondary font-bold text-4xl">
+                    {host.name.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
 
-            return (
-              <CardContainer key={host.name} className="inter-var">
-                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
-                  <CardItem translateZ="20">
-                    <div
-                      key={host.name}
-                      style={{ backgroundColor: host.bgColor }}
-                      className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transform hover:scale-[1.03] transition-transform duration-300 ${host.textColor}`}
-                    >
-                      {/* Image Container - Takes significant width on MD+ screens */}
-                      {/* Ensure image path is correct and image file exists */}
-                      <div className="md:w-2/5 flex-shrink-0">
-                        {/* Image fills container width, height adjusts (or use aspect-ratio) */}
-                        {/* Removed border, check if image styling is correct */}
-                        <img
-                          src={host.image}
-                          alt={`${host.name} caricature`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+              {/* Host Details Area */} 
+              <div className="md:w-2/3 p-6 md:p-8 flex flex-col justify-center">
+                  <h3 className="font-title-slab font-black text-3xl md:text-4xl text-tj-primary mb-1 uppercase tracking-wider">
+                    {host.name}
+                  </h3>
+                  <p className="font-body-sans text-tj-text-main/80 text-base md:text-lg mb-4">
+                    {host.title}
+                  </p>
+                  <p className="font-body-sans text-tj-text-main/90 mb-6 text-base leading-relaxed">
+                    {host.bio}
+                  </p>
 
-                      {/* Text Content Container */}
-                      <div className="md:w-3/5 p-6 flex flex-col">
-                        {/* Name */}
-                        <h3 className="text-3xl font-bold mb-3">{host.name}</h3>
+                  {/* Associated Company */}
+                  <div className="mb-6 border-t border-tj-primary/20 pt-4 flex items-center gap-4">
+                     <img src={host.associatedCompany.logo} alt={`${host.associatedCompany.name} Logo`} className="h-10 w-auto bg-white p-1 rounded" />
+                     <div>
+                        <p className="font-body-sans text-sm text-tj-text-main/70">Powered by</p>
+                        <p className="font-body-sans font-semibold text-tj-text-main">{host.associatedCompany.name}</p>
+                     </div>
+                  </div>
 
-                        {/* Bio */}
-                        <p className="text-base opacity-90 mb-5">{host.bio}</p>
-
-                        {/* Social Links */}
-                        <div className="mb-5">
-                          <h4 className="font-semibold mb-2 opacity-80 text-sm uppercase tracking-wider">Connect</h4>
-                          <div className="flex space-x-4 items-center">
-                            {host.socials.map((social) => (
-                              <a
-                                key={social.platform}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={`${host.name} on ${social.platform}`}
-                                className={`transition-opacity ${iconColorClass}`}
-                              >
-                                <social.icon className="w-6 h-6" />
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Quirky Fact / Easter Egg - Using Zap icon */}
-                        <div
-                          style={{ backgroundColor: factBgColor }}
-                          className={`mt-auto p-4 rounded-lg ${factTextColor} text-sm`}
+                  {/* Social Links */}
+                  <div>
+                    <h4 className="font-body-sans font-semibold mb-3 text-tj-text-main/80 text-sm uppercase tracking-wider">Connect with Chris</h4>
+                    <div className="flex flex-wrap gap-4 items-center">
+                      {host.socials.map(({ platform, url, Icon }) => (
+                        <a
+                          key={platform}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${host.name} on ${platform}`}
+                          className="text-tj-accent hover:text-tj-text-main transition-colors duration-200"
+                          title={platform}
                         >
-                          <div className="flex items-start gap-2">
-                            <Zap className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                            <p><strong className="font-semibold">Host Secret:</strong> {host.quirkyFact}</p>
-                          </div>
-                        </div>
-                      </div>
+                          <Icon className="w-6 h-6" />
+                        </a>
+                      ))}
                     </div>
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            );
-          })}
+                  </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
